@@ -1,1 +1,72 @@
-Hello GitHub；
+package com.example.alanandroid;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+		//我們需要跟xml建立連結，才會有畫面
+		//所以要進行 setContentView
+		
+		final EditText one=(EditText)findViewById(R.id.editText1);
+		final EditText two=(EditText)findViewById(R.id.editText2);
+		final EditText three=(EditText)findViewById(R.id.editText3);
+		final EditText four=(EditText)findViewById(R.id.editText4);
+		
+		
+		
+		Button BMI=(Button)findViewById(R.id.button1);
+		
+		BMI.setOnClickListener(new View.OnClickListener(){
+			public void onClick(View arg0){
+				double ea,eb;
+				if(("".equals(one.getText().toString().trim()))||("".equals(two.getText().toString().trim()))){
+					ea=0;
+					eb=0;
+				}
+				else{
+					ea= Double.valueOf(one.getText().toString()).doubleValue();
+					  eb= Double.valueOf(two.getText().toString()).doubleValue();
+				}
+			 
+				final double ec= eb/(ea*ea/100/100);
+			three.setText(""+ec);
+			if(ea==0||eb==0){
+				three.setText("No value");
+			}
+			if(ec>24){
+				four.setText("You are fat~~HAHAHA~~");
+				}
+			else if(ec<18.5){
+				four.setText("You are Skinny~~eat more~~");
+				}
+			else{
+				four.setText("Good~~you are healthy~~");
+			}
+			if(ea==0||eb==0){
+				four.setText("Are you kidding me @@!!");
+				}
+			
+			}
+			
+		});
+		
+		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}
